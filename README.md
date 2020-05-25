@@ -1,2 +1,2 @@
 # http-rest-api
-Trying to REST API in go
+Here my first REST API based on https://www.youtube.com/watch?v=LxJLuW5aUDQ tutor
