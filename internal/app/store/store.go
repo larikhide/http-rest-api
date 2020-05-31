@@ -5,13 +5,14 @@ import (
 	_ "github.com/lib/pq" //anonym import for to avoid methods imports from package
 )
 
+//Store ...
 type Store struct {
 	config *Config
 	db *sql.DB
 }
 // New create new store
 func New(config *Config) *Store {
-	return &Config{
+	return &Store{
 		config: config,
 	}
 }
@@ -22,6 +23,8 @@ func (s *Store) Open() error {
 		return err
 	}
 
+	//явая проверка что соединение создано с помощью sql.Open
+	//т.к. реально соединение устанавливается только при первом обращении
 	if err := db.Ping(); err != nil {
 		return err
 	}
@@ -31,5 +34,5 @@ func (s *Store) Open() error {
 }
 // Close for disconnect from store and some operations after server finished his work
 func (s *Store) Close() {
-	//...
+	s.db.Close()
 }
